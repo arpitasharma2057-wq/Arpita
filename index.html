@@ -1,390 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arpita Sharma | Portfolio</title>
-  <meta name="description" content="Personal portfolio of Arpita Sharma – developer, designer, and creative thinker."/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a12;
-      --surface: #12121e;
-      --card: #1a1a2e;
-      --accent: #a78bfa;
-      --accent2: #f472b6;
-      --accent3: #38bdf8;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --radius: 16px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(10,10,18,.7);
-      border-bottom: 1px solid rgba(167,139,250,.15);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2.5rem;
-    }
-    .logo {
-      font-size: 1.4rem; font-weight: 900;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none; font-weight: 500;
-      transition: color .3s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35;
-      animation: drift 8s ease-in-out infinite alternate;
-    }
-    .glow1 { width: 420px; height: 420px; background: var(--accent); top: -80px; left: -100px; }
-    .glow2 { width: 320px; height: 320px; background: var(--accent2); bottom: 0; right: -80px; animation-delay: 2s; }
-    .glow3 { width: 260px; height: 260px; background: var(--accent3); bottom: 60px; left: 30%; animation-delay: 4s; }
-
-    @keyframes drift { from { transform: translateY(0) scale(1); } to { transform: translateY(30px) scale(1.08); } }
-
-    .hero-content { position: relative; z-index: 1; }
-    .avatar {
-      width: 140px; height: 140px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem; margin: 0 auto 1.5rem;
-      box-shadow: 0 0 50px rgba(167,139,250,.5);
-      animation: pulse 3s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100% { box-shadow: 0 0 40px rgba(167,139,250,.4); } 50% { box-shadow: 0 0 70px rgba(244,114,182,.6); } }
-
-    .hero-tag {
-      display: inline-block; padding: .35rem 1rem;
-      background: rgba(167,139,250,.15); border: 1px solid rgba(167,139,250,.3);
-      border-radius: 999px; font-size: .85rem; color: var(--accent);
-      margin-bottom: 1rem; letter-spacing: .05em;
-    }
-    h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: .5rem; }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-sub { font-size: 1.2rem; color: var(--muted); max-width: 540px; margin: 1rem auto 2rem; }
-    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      padding: .85rem 2rem; border-radius: 999px; font-family: inherit;
-      font-size: 1rem; font-weight: 600; cursor: pointer;
-      text-decoration: none; transition: transform .2s, box-shadow .2s;
-    }
-    .btn:hover { transform: translateY(-3px); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff; border: none;
-      box-shadow: 0 6px 30px rgba(167,139,250,.4);
-    }
-    .btn-primary:hover { box-shadow: 0 10px 40px rgba(244,114,182,.5); }
-    .btn-outline {
-      background: transparent; border: 1.5px solid var(--accent);
-      color: var(--accent);
-    }
-    .btn-outline:hover { background: rgba(167,139,250,.1); }
-
-    /* ── SECTIONS ── */
-    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: .5rem;
-    }
-    .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 1rem; }
-    .section-divider {
-      width: 60px; height: 4px; border-radius: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      margin-bottom: 3rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
-    .info-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
-    .info-list li { display: flex; gap: .75rem; align-items: center; }
-    .info-icon { font-size: 1.2rem; }
-    .info-label { color: var(--muted); font-size: .9rem; }
-    .info-value { font-weight: 600; color: var(--text); }
-
-    /* ── SKILLS ── */
-    #skills { background: var(--surface); border-radius: var(--radius); max-width: 100%; }
-    #skills > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
-    .skills-section { padding: 6rem 2rem; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1.2rem; }
-    .skill-chip {
-      background: var(--card); border: 1px solid rgba(167,139,250,.15);
-      border-radius: 12px; padding: 1rem; text-align: center;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-      cursor: default;
-    }
-    .skill-chip:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 24px rgba(167,139,250,.2);
-    }
-    .skill-icon { font-size: 2rem; margin-bottom: .5rem; }
-    .skill-name { font-size: .85rem; font-weight: 600; color: var(--text); }
-
-    /* ── PROJECTS ── */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.8rem; }
-    .project-card {
-      background: var(--card); border: 1px solid rgba(167,139,250,.12);
-      border-radius: var(--radius); overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
-    .project-banner {
-      height: 160px; display: flex; align-items: center; justify-content: center;
-      font-size: 3rem;
-    }
-    .project-body { padding: 1.5rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
-    .tag {
-      font-size: .75rem; padding: .25rem .7rem; border-radius: 999px;
-      background: rgba(167,139,250,.15); color: var(--accent);
-    }
-    .project-title { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
-    .project-desc { color: var(--muted); font-size: .9rem; line-height: 1.7; }
-
-    /* ── CONTACT ── */
-    .contact-wrapper {
-      background: var(--card); border: 1px solid rgba(167,139,250,.15);
-      border-radius: var(--radius); padding: 3rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-    }
-    .contact-info h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
-    .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
-    .social-links { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .social-btn {
-      padding: .6rem 1.2rem; border-radius: 999px;
-      background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.25);
-      color: var(--accent); font-size: .9rem; font-weight: 600;
-      text-decoration: none; transition: background .2s, transform .2s;
-    }
-    .social-btn:hover { background: rgba(167,139,250,.2); transform: translateY(-2px); }
-    form { display: flex; flex-direction: column; gap: 1rem; }
-    form input, form textarea {
-      background: var(--surface); border: 1px solid rgba(167,139,250,.2);
-      border-radius: 10px; padding: .9rem 1.1rem;
-      color: var(--text); font-family: inherit; font-size: 1rem;
-      outline: none; transition: border-color .2s;
-    }
-    form input:focus, form textarea:focus { border-color: var(--accent); }
-    form textarea { resize: vertical; min-height: 130px; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 2.5rem 1rem;
-      color: var(--muted); font-size: .85rem;
-      border-top: 1px solid rgba(167,139,250,.1);
-    }
-    footer span { color: var(--accent2); }
-
-    /* ── RESPONSIVE ── */
-    @media(max-width: 768px) {
-      nav { padding: 1rem 1.2rem; }
-      .nav-links { gap: 1rem; }
-      .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtVerse | Global Art Exhibition & Creative Hub</title>
+    <meta name="description" content="Showcase your artwork, participate in creative challenges, and explore the global art gallery at ArtVerse.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">Arpita ✦</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">ArtVerse</div>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#gallery">Exhibition</a></li>
+            <li><a href="#activities">Challenges</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#upload">Join Gallery</a></li>
+        </ul>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-glow glow1"></div>
-  <div class="hero-glow glow2"></div>
-  <div class="hero-glow glow3"></div>
-  <div class="hero-content">
-    <div class="avatar">👩‍💻</div>
-    <div class="hero-tag">✨ Available for Opportunities</div>
-    <h1>Hi, I'm <span class="gradient-text">Arpita</span></h1>
-    <p class="hero-sub">A passionate developer who loves building beautiful, functional digital experiences that make an impact.</p>
-    <div class="btn-group">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="reveal">
-    <p class="section-label">Who I Am</p>
-    <h2 class="section-title">About Me</h2>
-    <div class="section-divider"></div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Hello! I'm <strong>Arpita Sharma</strong>, a creative and detail-oriented developer with a strong passion for building modern web applications and intuitive user interfaces.</p>
-        <p>I enjoy turning complex problems into elegant solutions, and I'm always eager to learn new technologies and take on exciting challenges.</p>
-        <p>When I'm not coding, you'll find me exploring design trends, reading tech blogs, or working on creative side projects.</p>
-      </div>
-      <ul class="info-list">
-        <li><span class="info-icon">👤</span><div><div class="info-label">Full Name</div><div class="info-value">Arpita Sharma</div></div></li>
-        <li><span class="info-icon">🎓</span><div><div class="info-label">Education</div><div class="info-value">Computer Science</div></div></li>
-        <li><span class="info-icon">📍</span><div><div class="info-label">Location</div><div class="info-value">India</div></div></li>
-        <li><span class="info-icon">💼</span><div><div class="info-label">Status</div><div class="info-value">Open to Work</div></div></li>
-        <li><span class="info-icon">🌐</span><div><div class="info-label">Languages</div><div class="info-value">English, Hindi</div></div></li>
-        <li><span class="info-icon">💡</span><div><div class="info-label">Interests</div><div class="info-value">Web Dev, UI/UX, AI</div></div></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<div id="skills" style="background:var(--surface);">
-  <div class="skills-section reveal" style="max-width:1100px;margin:auto;">
-    <p class="section-label">What I Know</p>
-    <h2 class="section-title">Skills & Tools</h2>
-    <div class="section-divider"></div>
-    <div class="skills-grid">
-      <div class="skill-chip"><div class="skill-icon">🌐</div><div class="skill-name">HTML</div></div>
-      <div class="skill-chip"><div class="skill-icon">🎨</div><div class="skill-name">CSS</div></div>
-      <div class="skill-chip"><div class="skill-icon">⚡</div><div class="skill-name">JavaScript</div></div>
-      <div class="skill-chip"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
-      <div class="skill-chip"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
-      <div class="skill-chip"><div class="skill-icon">🗄️</div><div class="skill-name">SQL</div></div>
-      <div class="skill-chip"><div class="skill-icon">🐙</div><div class="skill-name">Git</div></div>
-      <div class="skill-chip"><div class="skill-icon">🎭</div><div class="skill-name">Figma</div></div>
-      <div class="skill-chip"><div class="skill-icon">☁️</div><div class="skill-name">Cloud</div></div>
-      <div class="skill-chip"><div class="skill-icon">📱</div><div class="skill-name">Responsive</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="reveal">
-    <p class="section-label">My Work</p>
-    <h2 class="section-title">Projects</h2>
-    <div class="section-divider"></div>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-banner" style="background:linear-gradient(135deg,#1e1b4b,#312e81);">🛍️</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">React</span><span class="tag">CSS</span></div>
-          <div class="project-title">E-Commerce UI</div>
-          <p class="project-desc">A sleek, fully responsive e-commerce front-end with cart, filters, and product pages.</p>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+                <i class="fas fa-moon icon-moon"></i>
+                <i class="fas fa-sun icon-sun"></i>
+                <div class="toggle-ball"></div>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-      </div>
+    </nav>
 
-      <div class="project-card">
-        <div class="project-banner" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">🌤️</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">API</span></div>
-          <div class="project-title">Weather Dashboard</div>
-          <p class="project-desc">Real-time weather app with location search, dynamic backgrounds, and 7-day forecasts.</p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="paint-blob blob-1"></div>
+        <div class="paint-blob blob-2"></div>
+        <div class="paint-blob blob-3"></div>
+
+        <div class="hero-content">
+            <span class="section-label">Where Creativity Lives</span>
+            <h1>The Digital <span class="gradient-text">Exhibition</span> for Modern Artists</h1>
+            <p>Join a global community of creators. Showcase your masterpieces, engage in fun artistic challenges, and find your creative mood.</p>
+            <div class="hero-buttons">
+                <a href="#gallery" class="btn-primary">Explore Gallery <i class="fas fa-arrow-right"></i></a>
+                <a href="#studio" class="btn-outline">Try the Studio</a>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="project-card">
-        <div class="project-banner" style="background:linear-gradient(135deg,#1a0530,#4c0519);">📝</div>
-        <div class="project-body">
-          <div class="project-tags"><span class="tag">Python</span><span class="tag">SQL</span></div>
-          <div class="project-title">Task Manager App</div>
-          <p class="project-desc">A full-stack productivity app with authentication, task boards, and data persistence.</p>
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <span class="section-label">Live Exhibition</span>
+            <h2>Featured Masterpieces</h2>
+            <p>Discover breathtaking works from artists around the world. Filter by style to find what inspires you.</p>
         </div>
-      </div>
 
+        <div class="gallery-controls">
+            <button class="filter-btn active" data-filter="all">All Styles</button>
+            <button class="filter-btn" data-filter="abstract">Abstract</button>
+            <button class="filter-btn" data-filter="digital">Digital</button>
+            <button class="filter-btn" data-filter="portrait">Portrait</button>
+            <button class="filter-btn" data-filter="landscape">Landscape</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Art Card 1 -->
+            <div class="art-card" data-category="abstract">
+                <div class="card-img-wrap">
+                    <img src="art1.png" alt="Ethereal Flows" class="card-img">
+                    <span class="badge">Featured</span>
+                </div>
+                <div class="card-body">
+                    <h3>Ethereal Flows</h3>
+                    <p class="artist">by Arpita Sharma</p>
+                    <div class="card-actions">
+                        <div class="likes">
+                            <i class="fas fa-heart heart"></i>
+                            <span class="count">1.2k</span>
+                        </div>
+                        <button class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Art Card 2 -->
+            <div class="art-card" data-category="digital">
+                <div class="card-img-wrap">
+                    <img src="art2.png" alt="Neon Reflections" class="card-img">
+                    <span class="badge">Trending</span>
+                </div>
+                <div class="card-body">
+                    <h3>Neon Reflections</h3>
+                    <p class="artist">by CyberGhost</p>
+                    <div class="card-actions">
+                        <div class="likes">
+                            <i class="fas fa-heart heart"></i>
+                            <span class="count">850</span>
+                        </div>
+                        <button class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Art Card 3 -->
+            <div class="art-card" data-category="portrait">
+                <div class="card-img-wrap">
+                    <img src="art3.png" alt="The Silent Gaze" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>The Silent Gaze</h3>
+                    <p class="artist">by Julian V.</p>
+                    <div class="card-actions">
+                        <div class="likes">
+                            <i class="fas fa-heart heart"></i>
+                            <span class="count">420</span>
+                        </div>
+                        <button class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Art Card 4 -->
+            <div class="art-card" data-category="abstract">
+                <div class="card-img-wrap">
+                    <img src="art4.png" alt="Geometric Chaos" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Geometric Chaos</h3>
+                    <p class="artist">by Minimalist</p>
+                    <div class="card-actions">
+                        <div class="likes">
+                            <i class="fas fa-heart heart"></i>
+                            <span class="count">310</span>
+                        </div>
+                        <button class="btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Section (Drawing Canvas) -->
+    <section class="section" id="studio">
+        <div class="section-header">
+            <span class="section-label">Creator Studio</span>
+            <h2>Sketch Your Idea</h2>
+            <p>Use our mini-canvas to quickly draft a concept or just doodle for fun!</p>
+        </div>
+
+        <div class="canvas-section">
+            <div class="canvas-toolbar">
+                <input type="color" id="colorPicker" value="#c084fc">
+                <input type="range" id="lineWidth" min="1" max="20" value="5">
+                <button id="clearCanvas">Clear</button>
+                <button id="saveCanvas" class="btn-primary" style="padding: 0.5rem 1rem;">Save Result</button>
+            </div>
+            <canvas id="drawCanvas"></canvas>
+        </div>
+    </section>
+
+    <!-- Activities & Challenges Section -->
+    <section class="section" id="activities">
+        <div class="section-header">
+            <span class="section-label">Fun Activities</span>
+            <h2>Weekly Art Challenges</h2>
+            <p>Level up your skills by completing these creative tasks.</p>
+        </div>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="emoji">🍎</div>
+                <span class="tag tag-easy">Easy</span>
+                <h3>The 5-Minute Fruit</h3>
+                <p>Draw any fruit in exactly 5 minutes. No more, no less!</p>
+                <div class="progress-bar"><div class="fill" style="width: 70%;"></div></div>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🌈</div>
+                <span class="tag tag-medium">Medium</span>
+                <h3>Limited Palette</h3>
+                <p>Create a portrait using only 3 specific colors of your choice.</p>
+                <div class="progress-bar"><div class="fill" style="width: 30%;"></div></div>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🤖</div>
+                <span class="tag tag-hard">Hard</span>
+                <h3>Cyber-Me</h3>
+                <p>Design a robotic version of yourself with intricate details.</p>
+                <div class="progress-bar"><div class="fill" style="width: 10%;"></div></div>
+            </div>
+
+            <div class="activity-card">
+                <div class="emoji">🎨</div>
+                <span class="tag tag-fun">Fun</span>
+                <h3>Mood Palette</h3>
+                <p>Set your mood below and generate a color palette for your next piece!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood Board Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2>Set Your Mood</h2>
+            <p>Select how you're feeling and we'll suggest a creative vibe.</p>
+        </div>
+
+        <div class="mood-options">
+            <button class="mood-btn" data-mood="energetic">
+                🔥 <span>Energetic</span>
+            </button>
+            <button class="mood-btn" data-mood="calm">
+                🌊 <span>Calm</span>
+            </button>
+            <button class="mood-btn" data-mood="mysterious">
+                🌌 <span>Mysterious</span>
+            </button>
+            <button class="mood-btn" data-mood="joyful">
+                ✨ <span>Joyful</span>
+            </button>
+        </div>
+
+        <div id="mood-result" class="mood-result">
+            <h3 id="mood-title">Energetic Vibe</h3>
+            <p id="mood-desc" style="margin-bottom: 1.5rem;">Use high-contrast colors like neon orange and deep black. Think bold lines and sharp angles.</p>
+            <div class="palette-display" id="palette-display">
+                <!-- Palette colors generated by JS -->
+            </div>
+            <button class="btn-outline" id="regen-palette">New Palette</button>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="section" id="upload">
+        <div class="section-header">
+            <span class="section-label">Be Part of Us</span>
+            <h2>Submit Your Artwork</h2>
+            <p>Ready to show the world? Upload your latest creation here.</p>
+        </div>
+
+        <div class="upload-area" id="drop-zone">
+            <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <h3>Drag & Drop Files</h3>
+            <p>PNG, JPG or WebP up to 10MB</p>
+        </div>
+
+        <form class="upload-form" id="upload-form">
+            <div class="form-group">
+                <label>Artwork Title</label>
+                <input type="text" placeholder="e.g. Midnight Dreams" required>
+            </div>
+            <div class="form-group">
+                <label>Style / Category</label>
+                <select>
+                    <option value="abstract">Abstract</option>
+                    <option value="digital">Digital</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape">Landscape</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Artist Name</label>
+                <input type="text" placeholder="How you want to be credited" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea placeholder="Tell us the story behind this piece..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Post to Exhibition</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#activities">Tasks</a>
+            <a href="#studio">Studio</a>
+        </div>
+        <p>&copy; 2026 ArtVerse. Crafted for creators by Antigravity.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-lb" id="close-lb">&times;</button>
+        <img src="" alt="Full view" id="lb-img">
+        <div class="lb-info">
+            <h3 id="lb-title">Artwork Title</h3>
+            <p id="lb-artist">by Artist Name</p>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="reveal">
-    <p class="section-label">Let's Connect</p>
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="section-divider"></div>
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <h3>Let's work together! 🚀</h3>
-        <p>Have a project in mind or just want to say hi? My inbox is always open. I'll try my best to get back to you!</p>
-        <div class="social-links">
-          <a href="#" class="social-btn">💼 LinkedIn</a>
-          <a href="#" class="social-btn">🐙 GitHub</a>
-          <a href="#" class="social-btn">🐦 Twitter</a>
-          <a href="mailto:arpita@email.com" class="social-btn">📧 Email</a>
-        </div>
-      </div>
-      <form onsubmit="handleSubmit(event)">
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="email" id="email" placeholder="Your Email" required />
-        <textarea id="message" placeholder="Your Message..." required></textarea>
-        <button type="submit" class="btn btn-primary">Send Message ✉️</button>
-      </form>
-    </div>
-  </div>
-</section>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Task completed successfully!</div>
 
-<!-- FOOTER -->
-<footer>
-  <p>Designed & Built with <span>♥</span> by <strong>Arpita Sharma</strong> &nbsp;·&nbsp; © 2025</p>
-</footer>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-
-  // Contact form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✅ Message Sent!';
-    btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
-    setTimeout(() => {
-      btn.textContent = 'Send Message ✉️';
-      btn.style.background = '';
-      e.target.reset();
-    }, 3000);
-  }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
